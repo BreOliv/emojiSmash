@@ -11,10 +11,12 @@ export default function EmojiSticker({ imageSize, stickerSource }) {
   const doubleTap = Gesture.Tap()
     .numberOfTaps(2)
     .onStart(() => {
-      if (scaleImage.value !== imageSize * 2) {
-        scaleImage.value = scaleImage.value * 2;
-      }
-    });
+        if (scaleImage.value === imageSize) {
+          scaleImage.value = imageSize * 2;
+        } else {
+          scaleImage.value = imageSize;
+        }
+      });
   const imageStyle = useAnimatedStyle(() => {
     return {
       width: withSpring(scaleImage.value),

@@ -70,14 +70,14 @@ export default function App() {
       }
     } else {
       try {
-        const dataUrl = await domtoimage.toJpeg(imageRef.current, {
+        const dataUrl = await domtoimage.toPng(imageRef.current, {
           quality: 0.95,
           width: 320,
           height: 440,
         });
   
         let link = document.createElement('a');
-        link.download = 'sticker-smash.jpeg';
+        link.download = 'sticker-smash.png';
         link.href = dataUrl;
         link.click();
       } catch (erro) {
@@ -90,7 +90,7 @@ export default function App() {
   return (
     <GestureHandlerRootView style={styles.container}>
        <View style={styles.imageContainer}>
-        <View ref={imageRef} collapsable={false}>
+        <View ref={imageRef} collapsable={false} style={{ backgroundColor: 'transparent' }} >
           <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage} />
           {pickedEmoji && <EmojiSticker imageSize={40} stickerSource={pickedEmoji} />}
         </View>
